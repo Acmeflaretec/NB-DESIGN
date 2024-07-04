@@ -5,7 +5,9 @@
     --light: #F6F4F9;
     --dark: #04000B;
 }
-
+.body{
+    margin: 0;
+}
 
 /*** Spinner ***/
 #spinner {
