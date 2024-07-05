@@ -616,3 +616,27 @@ h6,
     width: 24px;
     height: 24px;
   }
+  .whatsapp-float {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 40px; /* Adjust as needed */
+    right: 40px; /* Adjust as needed */
+    background-color: #25d366; /* WhatsApp Green */
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 24px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1000; /* Ensure it's above other elements */
+    transition: background-color 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E; /* Darker WhatsApp Green on hover */
+}
+
+/* WhatsApp icon inside the button */
+.my-float {
+    margin-top: 18px; /* Adjust vertical position of the icon */
+}
