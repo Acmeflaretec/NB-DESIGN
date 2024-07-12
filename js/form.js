@@ -1,6 +1,9 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbyaq80ObNpfKNePgt_eZHroWiP7t46yNYhmJ2LEn27s3xqjbFnqvleQcppBda0H7ILZ3w/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzLmpTMjmBu6hEK2TZ8Xm7I8Ah5NhTwdM17t2ppw1_cuYANBKkvOvtDaLzk2Ku6iwk1rA/exec';
 const form = document.forms['contact-form'];
 const submitButton = document.getElementById('submit');
+
+// Initially disable the submit button
+submitButton.disabled = true;
 
 form.addEventListener('input', validateForm);
 form.addEventListener('submit', e => {
@@ -20,20 +23,28 @@ form.addEventListener('submit', e => {
     }
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => alert("Thank you! Your form is submitted successfully."))
-        .then(() => { window.location.reload(); })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(() => {
+            alert("Thank you! Your form is submitted successfully.");
+            window.location.reload();
+        })
         .catch(error => console.error('Error!', error.message));
 });
 
 document.getElementById('phone').addEventListener('input', function () {
-    var phone = this.value;
-    var phoneError = document.getElementById('phoneError');
-    var pattern = /^\d{10,}$/;
+    const phone = this.value;
+    const phoneError = document.getElementById('phoneError');
+    const pattern = /^\d{10,}$/;
 
     if (!pattern.test(phone)) {
         phoneError.textContent = "Please enter at least 10 digits.";
     } else {
-        phoneError.textContent = " ";
+        phoneError.textContent = "";
     }
 });
 
@@ -44,9 +55,5 @@ function validateForm() {
     const message = document.getElementById('message').value;
     const phonePattern = /^\d{10,}$/;
 
-    if (name && phonePattern.test(phone) && subject && message) {
-        submitButton.disabled = false;
-    } else {
-        submitButton.disabled = true;
-    }
+    submitButton.disabled = !(name && phonePattern.test(phone) && subject && message);
 }

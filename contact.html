@@ -10,7 +10,7 @@
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -99,7 +99,7 @@
                     <div class="col-lg-7">
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
                             <p class="text-center mb-4"></p>
-                          <form name="contact-form" id="contactForm" novalidate>
+                            <form name="contact-form" id="contactForm" novalidate>
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
@@ -109,13 +109,11 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                       
                                         <div class="form-floating">
-                                            <input type="tel" class="form-control" id="phone" name="your-number" placeholder="Your Phone Number" pattern="d{10,}" title="Please enter a valid phone number with at least 10 digits" required>
+                                            <input type="tel" class="form-control" id="phone" name="your-number" placeholder="Your Phone Number" pattern="^\d{10,}$" title="Please enter a valid phone number with at least 10 digits" required>
                                             <label for="phone">Your Phone Number</label>
+                                            <p class="text-danger" id="phoneError"></p>
                                         </div>
-                                        
-                                        
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating">
@@ -136,6 +134,7 @@
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
